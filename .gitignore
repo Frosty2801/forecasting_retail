@@ -225,3 +225,11 @@ kaggle.json
 mlflow.db
 mlruns/
 mlartifacts/
+
+# Generated dataset artifacts
+data/raw/
+data/processed/
+data/external/
+
+# Trained model artifacts
+models/

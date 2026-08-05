@@ -35,6 +35,7 @@ forecasting_retail/
 ## 🚀 Quick Start & Installation
 
 ### 1. Virtual Environment & Dependencies
+
 ```bash
 python3 -m venv venv
 source venv/bin/activate
@@ -43,6 +44,7 @@ pip install -r requirements.txt
 ```
 
 ### 2. Running Tests
+
 ```bash
 pytest
 ```
@@ -50,17 +52,18 @@ pytest
 ### 3. Starting Services
 
 * **FastAPI REST API:**
+
   ```bash
   uvicorn src.api.main:app --reload --port 8000
   ```
   * Interactive API Docs: [http://localhost:8000/docs](http://localhost:8000/docs)
-
 * **Streamlit Dashboard:**
+
   ```bash
   streamlit run src/streamlit/app.py
   ```
-
 * **Docker Compose:**
+
   ```bash
   docker-compose up --build
   ```

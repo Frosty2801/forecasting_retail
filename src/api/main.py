@@ -28,11 +28,30 @@ class PredictRequest(BaseModel):
     store_nbr: int
     family: str
     onpromotion: int
+    city: str
+    state: str
+    type: str
+    cluster: int
     dcoilwtico: float
+    holiday_type: str | None = None
+    holiday_locale: str | None = None
+    holiday_transferred: str | None = None
+    is_holiday: int = 0
+    transactions: float | None = None
     year: int
     month: int
+    week: int
     day: int
     dayofweek: int
+    quarter: int
+    is_weekend: int
+    sales_lag_1: float = 0.0
+    sales_lag_7: float = 0.0
+    sales_lag_14: float = 0.0
+    sales_lag_28: float = 0.0
+    sales_rolling_mean_7: float = 0.0
+    sales_rolling_mean_14: float = 0.0
+    sales_rolling_mean_30: float = 0.0
 
 
 @app.get("/health")
@@ -44,11 +63,11 @@ def health_check():
 def predict_sales(payload: PredictRequest):
     if predictor is None or predictor.model is None:
         raise HTTPException(status_code=503, detail="Model not loaded or trained yet.")
-    
+
     df = pd.DataFrame([payload.model_dump()])
     try:
         preds = predictor.predict(df)
-        return {"predicted_sales": float(preds.iloc[0])}
+        return {"predicted_sales": round(float(preds.iloc[0]), 2)}
     except (ValueError, TypeError, RuntimeError) as e:
         raise HTTPException(status_code=400, detail=str(e))
 
