@@ -1,5 +1,6 @@
 from pathlib import Path
-from typing import Any, Dict, Optional
+from typing import Any
+
 import yaml
 from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -24,7 +25,7 @@ class AppSettings(BaseSettings):
     )
 
 
-def load_yaml_config(config_path: Optional[Path] = None) -> Dict[str, Any]:
+def load_yaml_config(config_path: Path | None = None) -> dict[str, Any]:
     """Loads and parses a YAML configuration file.
 
     Args:
