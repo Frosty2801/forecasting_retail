@@ -1,0 +1,28 @@
+app:
+  name: "Retail Sales Forecasting"
+  version: "1.0.0"
+  env: "development"
+
+paths:
+  data_raw: "data/raw"
+  data_processed: "data/processed"
+  models: "models"
+  reports: "reports"
+
+data:
+  target_col: "sales"
+  date_col: "date"
+  id_col: "id"
+  store_col: "store_nbr"
+  family_col: "family"
+
+features:
+  lags: [1, 7, 14, 28, 30]
+  rolling_windows: [7, 14, 30, 60]
+  use_calendar_features: true
+  use_holiday_features: true
+  use_oil_features: true
+
+mlflow:
+  experiment_name: "retail_sales_forecasting"
+  tracking_uri: "sqlite:///mlflow.db"
